@@ -3,7 +3,7 @@ package com.umc.umcmission.domain.user.controller;
 import com.umc.umcmission.domain.user.dto.UserReqDTO;
 import com.umc.umcmission.domain.user.dto.UserResDTO;
 import com.umc.umcmission.domain.user.exception.code.UserSuccessCode;
-import com.umc.umcmission.global.ApiResponse;
+import com.umc.umcmission.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

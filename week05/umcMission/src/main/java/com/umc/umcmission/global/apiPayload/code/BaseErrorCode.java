@@ -1,9 +1,12 @@
-package com.umc.umcmission.global;
+package com.umc.umcmission.global.apiPayload.code;
+
 
 import org.springframework.http.HttpStatus;
 
-public interface BaseSuccessCode {
+public interface BaseErrorCode {
+
   HttpStatus getStatus();
   String getCode();
   String getMessage();
+
 }

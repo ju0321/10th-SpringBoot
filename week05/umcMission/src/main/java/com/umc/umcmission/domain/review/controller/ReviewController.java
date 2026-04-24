@@ -3,7 +3,7 @@ package com.umc.umcmission.domain.review.controller;
 import com.umc.umcmission.domain.review.dto.ReviewReqDTO;
 import com.umc.umcmission.domain.review.dto.ReviewResDTO;
 import com.umc.umcmission.domain.review.exception.code.ReviewSuccessCode;
-import com.umc.umcmission.global.ApiResponse;
+import com.umc.umcmission.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

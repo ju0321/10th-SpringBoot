@@ -1,6 +1,6 @@
 package com.umc.umcmission.domain.store.exception.code;
 
-import com.umc.umcmission.global.BaseSuccessCode;
+import com.umc.umcmission.global.apiPayload.code.BaseSuccessCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -3,7 +3,7 @@ package com.umc.umcmission.domain.mission.controller;
 import com.umc.umcmission.domain.mission.dto.MissionReqDTO;
 import com.umc.umcmission.domain.mission.dto.MissionResDTO;
 import com.umc.umcmission.domain.mission.exception.code.MissionSuccessCode;
-import com.umc.umcmission.global.ApiResponse;
+import com.umc.umcmission.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

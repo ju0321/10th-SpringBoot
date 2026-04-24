@@ -1,4 +1,4 @@
-package com.umc.umcmission.global;
+package com.umc.umcmission.global.apiPayload.code;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor
-public enum GeneralErrorCode implements BaseErrorCode{
+public enum GeneralErrorCode implements BaseErrorCode {
 
   BAD_REQUEST(HttpStatus.BAD_REQUEST,
       "COMMON400_1","잘못된 요청입니다."),

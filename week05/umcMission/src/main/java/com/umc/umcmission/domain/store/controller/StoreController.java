@@ -3,7 +3,7 @@ package com.umc.umcmission.domain.store.controller;
 import com.umc.umcmission.domain.store.dto.StoreReqDTO;
 import com.umc.umcmission.domain.store.dto.StoreResDTO;
 import com.umc.umcmission.domain.store.exception.code.StoreSuccessCode;
-import com.umc.umcmission.global.ApiResponse;
+import com.umc.umcmission.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
