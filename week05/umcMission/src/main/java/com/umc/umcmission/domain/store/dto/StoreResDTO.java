@@ -1,32 +1,46 @@
 package com.umc.umcmission.domain.store.dto;
 
 import com.umc.umcmission.domain.store.enums.StoreCategory;
-import lombok.AllArgsConstructor;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 public class StoreResDTO {
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class AddStoreRes {
-    private Long storeId;
-    private String storeName;
-  }
+  public record AddStoreRes(
+      Long storeId,
+      String storeName
+  ) {}
 
-  @Getter
+  // 지도 - 가게 리스트 단건
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class StoreInfoRes {
-    private Long storeId;
-    private String storeName;
-    private StoreCategory storeCategory;
-    private String address;
-    private String description;
-    private String regionName;
-  }
+  public record StoreListRes(
+      Long storeId,
+      String storeName,
+      StoreCategory storeCategory,
+      Integer missionPoint,
+      Double distance
+  ) {}
+
+
+  // 가게 상세 - 리뷰 단건
+  @Builder
+  public record ReviewInfo(
+      String nickname,
+      Integer rating,
+      String content,
+      String imageUrl,
+      LocalDateTime createdAt
+  ) {}
+
+  // 가게 상세
+  @Builder
+  public record StoreInfoRes(
+      Long storeId,
+      String storeName,
+      StoreCategory storeCategory,
+      String address,
+      List<ReviewInfo> reviews
+  ) {}
 }

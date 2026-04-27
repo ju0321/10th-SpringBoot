@@ -1,20 +1,36 @@
 package com.umc.umcmission.domain.user.dto;
 
-import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
+import java.util.List;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 public class UserResDTO {
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class JoinRes {
-    private Long userId;
-    private String email;
-    private LocalDateTime createdAt;
-  }
+  public record LoginRes(
+      Long userId,
+      String name
+  ) {}
+
+  @Builder
+  public record Home(
+      String region,
+      Integer successMissionCount,
+      List<MissionInfo> missions
+  ) {}
+
+  @Builder
+  public record MissionInfo(
+      String storeName,
+      String storeCategory,
+      String missionContent,
+      Integer missionPoint
+  ) {}
+
+  @Builder
+  public record MyPageRes(
+      String nickName,
+      String email,
+      String phoneNumber,
+      Integer point
+  ) {}
 }

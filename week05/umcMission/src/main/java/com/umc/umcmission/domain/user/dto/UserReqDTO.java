@@ -9,41 +9,33 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 public class UserReqDTO {
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class JoinReq {
+  public record JoinReq(
+      @NotBlank(message = "이름은 필수입니다.") String name,
+      String nickname,
+      @NotBlank(message = "이메일은 필수입니다.") @Email(message = "올바른 이메일 형식이 아닙니다.") String email,
+      @NotBlank(message = "비밀번호는 필수입니다.") @Size(min = 8, message = "비밀번호는 8자 이상이어야 합니다.") String password,
+      @NotBlank(message = "비밀번호 확인은 필수입니다.") String passwordConfirm,
+      @NotBlank(message = "주소는 필수입니다.") String address,
+      @Past(message = "생년월일은 과거 날짜여야 합니다.") LocalDate birthDate,
+      @NotNull(message = "성별은 필수입니다.") Gender gender,
+      List<FoodCategory> foodCategories
+  ) {}
 
-    @NotBlank(message = "이름은 필수입니다.")
-    private String name;
+  @Builder
+  public record LoginReq(
+      @NotBlank(message = "이메일은 필수입니다.") @Email(message = "올바른 이메일 형식이 아닙니다.") String email,
+      @NotBlank(message = "비밀번호는 필수입니다.") @Size(min = 8, message = "비밀번호는 8자 이상이어야 합니다.") String password
+  ) {}
 
-    private String nickname;
-
-    @NotBlank(message = "이메일은 필수입니다.")
-    @Email(message = "올바른 이메일 형식이 아닙니다.")
-    private String email;
-
-    @NotBlank(message = "비밀번호는 필수입니다.")
-    @Size(min = 8, message = "비밀번호는 8자 이상이어야 합니다.")
-    private String password;
-
-    @NotBlank(message = "주소는 필수입니다.")
-    private String address;
-
-    @Past(message = "생년월일은 과거 날짜여야 합니다.")
-    private LocalDate birthDate;
-
-    @NotNull(message = "성별은 필수입니다.")
-    private Gender gender;
-
-    private List<FoodCategory> foodCategories;
-  }
+  @Builder
+  public record UpdateUserReq(
+      String nickname,
+      String address,
+      @NotBlank(message = "휴대폰번호는 필수입니다.") String phoneNumber
+  ) {}
 }

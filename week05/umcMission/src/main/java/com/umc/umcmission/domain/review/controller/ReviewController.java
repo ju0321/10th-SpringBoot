@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Review", description = "리뷰 관련 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/stores/{storeId}")
+@RequestMapping("/api/stores/{storeId}/reviews")
 public class ReviewController {
 
   @Operation(summary = "리뷰 작성", description = "특정 가게에 리뷰를 작성합니다.")
-  @PostMapping("/reviews")
+  @PostMapping("")
   public ApiResponse<ReviewResDTO.AddReviewRes> addReview(
       @Parameter(description = "가게 ID") @PathVariable Long storeId,
       @RequestBody @Valid ReviewReqDTO.AddReviewReq request
@@ -33,14 +33,11 @@ public class ReviewController {
     return ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_CREATED, null);
   }
 
-  @Operation(summary = "가게 리뷰 목록 조회", description = "특정 가게의 리뷰 목록을 페이지 단위로 조회합니다.")
-  @GetMapping("/reviews")
-  public ApiResponse<ReviewResDTO.ReviewPreviewListRes> getReviews(
-      @Parameter(description = "가게 ID") @PathVariable Long storeId,
-      @Parameter(description = "페이지 번호 (0부터 시작)") @RequestParam(defaultValue = "0") int page,
-      @Parameter(description = "페이지 크기") @RequestParam(defaultValue = "10") int size
+  @Operation(summary = "가게 리뷰 목록 조회", description = "특정 가게의 리뷰 목록을 조회합니다.")
+  @GetMapping("")
+  public ApiResponse<List<ReviewResDTO.ReviewPreview>> getReviews(
+      @Parameter(description = "가게 ID") @PathVariable Long storeId
   ) {
-    //
     return ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_LIST_FOUND, null);
   }
 }

@@ -2,46 +2,30 @@ package com.umc.umcmission.domain.review.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 public class ReviewResDTO {
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class AddReviewRes {
-    private Long reviewId;
-    private Integer rating;
-    private String content;
-    private LocalDateTime createdAt;
-  }
+  public record AddReviewRes(
+      Long reviewId,
+      Integer rating,
+      String content,
+      LocalDateTime createdAt
+  ) {}
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ReviewPreview {
-    private Long reviewId;
-    private Integer rating;
-    private String content;
-    private String imageUrl;
-    private LocalDateTime createdAt;
-  }
+  public record ReviewPreview(
+      Long reviewId,
+      String nickname,
+      Integer rating,
+      String content,
+      String imageUrl,
+      LocalDateTime createdAt
+  ) {}
 
-  @Getter
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class ReviewPreviewListRes {
-    private List<ReviewPreview> reviewList;
-    private int listSize;
-    private int totalPage;
-    private long totalElements;
-    private boolean isFirst;
-    private boolean isLast;
-  }
+  public record ReviewPreviewListRes(
+      List<ReviewPreview> reviewList
+  ) {}
 }
