@@ -41,10 +41,10 @@ public class ReviewResDTO {
   ) {}
 
   @Builder
-  public record MyReviewListRes(
-      List<MyReviewPreview> reviewList,
-      Long nextLastId,
-      Integer nextLastRating,
+  public record Pagination<T>(
+      List<T> data,
+      Integer pageSize,
+      String nextCursor,
       boolean hasNext
   ) {}
 }

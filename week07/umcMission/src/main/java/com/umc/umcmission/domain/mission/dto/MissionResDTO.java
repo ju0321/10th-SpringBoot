@@ -5,6 +5,8 @@ import com.umc.umcmission.global.apiPayload.page.PageResDTO;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 public class MissionResDTO {
 
@@ -46,6 +48,22 @@ public class MissionResDTO {
       String storeCategory,
       String missionContent,
       Integer missionPoint
+  ) {}
+
+  @Builder
+  public record GetMission(
+      Long missionId,
+      String title,
+      String description,
+      Integer rewardPoint
+  ) {}
+
+  @Builder
+  public record Pagination<T>(
+      List<T> data,
+      Integer pageSize,
+      String nextCursor,
+      boolean hasNext
   ) {}
 
   @Builder

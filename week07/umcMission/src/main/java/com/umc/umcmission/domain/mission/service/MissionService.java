@@ -2,10 +2,14 @@ package com.umc.umcmission.domain.mission.service;
 
 import com.umc.umcmission.domain.mission.dto.MissionReqDTO;
 import com.umc.umcmission.domain.mission.dto.MissionResDTO.CreateMissionRes;
+import com.umc.umcmission.domain.mission.dto.MissionResDTO.GetMission;
 import com.umc.umcmission.domain.mission.dto.MissionResDTO.HomeRes;
 import com.umc.umcmission.domain.mission.dto.MissionResDTO.MissionInfo;
+import com.umc.umcmission.domain.mission.dto.MissionResDTO.Pagination;
 import com.umc.umcmission.domain.mission.entity.Mission;
 import com.umc.umcmission.domain.mission.enums.MissionStatus;
+import com.umc.umcmission.domain.mission.exception.MissionException;
+import com.umc.umcmission.domain.mission.exception.code.MissionErrorCode;
 import com.umc.umcmission.domain.mission.repository.MissionRepository;
 import com.umc.umcmission.domain.store.entity.Region;
 import com.umc.umcmission.domain.store.entity.Store;
@@ -17,11 +21,14 @@ import com.umc.umcmission.domain.user.exception.code.UserErrorCode;
 import com.umc.umcmission.domain.user.repository.UserRepository;
 import com.umc.umcmission.global.apiPayload.exception.ProjectException;
 import com.umc.umcmission.global.apiPayload.page.PageResDTO;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +61,87 @@ public class MissionService {
         .missionId(saved.getId())
         .title(saved.getTitle())
         .rewardPoint(saved.getRewardPoint())
+        .build();
+  }
+
+  @Transactional(readOnly = true)
+  public Page<GetMission> getMissions(Long storeId, Integer pageSize, Integer pageNum, String sort) {
+    if (!storeRepository.existsById(storeId)) {
+      throw new ProjectException(StoreErrorCode.STORE_NOT_FOUND);
+    }
+
+    Sort sorting = (sort != null && sort.equalsIgnoreCase("rewardPoint"))
+        ? Sort.by(Sort.Direction.DESC, "rewardPoint")
+        : Sort.by(Sort.Direction.ASC, "id");
+
+    Pageable pageable = PageRequest.of(pageNum, pageSize, sorting);
+
+    return missionRepository.findByStoreId(storeId, pageable)
+        .map(m -> GetMission.builder()
+            .missionId(m.getId())
+            .title(m.getTitle())
+            .description(m.getDescription())
+            .rewardPoint(m.getRewardPoint())
+            .build());
+  }
+
+  @Transactional(readOnly = true)
+  public Pagination<GetMission> getMissions2(Long storeId, Integer pageSize, String cursor, String query) {
+    if (!storeRepository.existsById(storeId)) {
+      throw new ProjectException(StoreErrorCode.STORE_NOT_FOUND);
+    }
+
+    // 1. 페이지 정보로 PageRequest 만들기
+    Pageable pageable = PageRequest.of(0, pageSize);
+
+    Long idCursor;
+    Slice<Mission> missionList;
+    String nextCursor;
+
+    // 2. 커서 유무 확인
+    if (!cursor.equals("-1")) {
+      // 2a. 커서 있는 경우 → 커서 분리 & 타입 변환
+      String[] cursorSplit = cursor.split(":");
+      switch (query.toLowerCase()) {
+        case "id":
+          Long prevCursor = Long.valueOf(cursorSplit[0]);
+          idCursor = Long.parseLong(cursorSplit[1]);
+          // 가게 내 미션들 조회 & where절에 커서값 기입
+          missionList = missionRepository.findMissionsByStoreId_AndIdLessThanOrderByIdDesc(storeId, idCursor, pageable);
+          break;
+        default:
+          throw new MissionException(MissionErrorCode.QUERY_NOT_VALID);
+      }
+    } else {
+      // 2b. 커서 없이 조회
+      missionList = missionRepository.findMissionsByStoreId_OrderByIdDesc(storeId, pageable);
+    }
+
+    // 3. 다음 커서 계산 - ID:ID 형태로 제작
+    Mission lastMission = missionList.getContent().isEmpty() ? null : missionList.getContent().getLast();
+    nextCursor = (lastMission != null)
+        ? lastMission.getId() + ":" + lastMission.getId()
+        : null;
+
+    // 4. 미션들 응답 DTO로 포장하기
+    return toPagination(missionList, pageSize, nextCursor);
+  }
+
+  private Pagination<GetMission> toPagination(Slice<Mission> missionSlice, Integer pageSize, String nextCursor) {
+    List<GetMission> data = missionSlice.getContent().stream()
+        .map(m -> GetMission.builder()
+            .missionId(m.getId())
+            .title(m.getTitle())
+            .description(m.getDescription())
+            .rewardPoint(m.getRewardPoint())
+            .build())
+        .toList();
+
+    return Pagination.<GetMission>builder()
+        .data(data)
+        .pageSize(pageSize)
+        .nextCursor(nextCursor)
+        .hasNext(missionSlice.hasNext())
         .build();
   }
 

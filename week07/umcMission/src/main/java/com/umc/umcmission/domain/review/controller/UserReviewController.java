@@ -25,18 +25,17 @@ public class UserReviewController {
   @Operation(
       summary = "내가 생성한 리뷰 목록 조회",
       description = "커서 기반 페이지네이션으로 내 리뷰를 조회합니다. "
-          + "sortType=ID(ID 순) 또는 sortType=RATING(별점 내림차순). "
-          + "첫 페이지는 lastId/lastRating 없이 요청, 이후 응답의 nextLastId/nextLastRating을 커서로 사용하세요."
+          + "query=id(ID 순) 또는 query=rating(별점 내림차순). "
+          + "첫 페이지는 cursor=-1로 요청, 이후 응답의 nextCursor를 cursor로 사용하세요."
   )
   @GetMapping("/{userId}/reviews")
-  public ApiResponse<ReviewResDTO.MyReviewListRes> getMyReviews(
+  public ApiResponse<ReviewResDTO.Pagination<ReviewResDTO.MyReviewPreview>> getMyReviews(
       @Parameter(description = "유저 ID") @PathVariable Long userId,
-      @Parameter(description = "ID 커서 (첫 페이지 생략)") @RequestParam(required = false) Long lastId,
-      @Parameter(description = "별점 커서 - RATING 정렬 시 사용 (첫 페이지 생략)") @RequestParam(required = false) Integer lastRating,
-      @Parameter(description = "정렬 기준: ID(기본값) 또는 RATING") @RequestParam(defaultValue = "ID") String sortType,
-      @Parameter(description = "페이지 크기") @RequestParam(defaultValue = "10") int size
+      @Parameter(description = "페이지 크기") @RequestParam(defaultValue = "10") Integer pageSize,
+      @Parameter(description = "커서 (첫 페이지는 -1)") @RequestParam(defaultValue = "-1") String cursor,
+      @Parameter(description = "정렬 기준: id 또는 rating") @RequestParam(defaultValue = "id") String query
   ) {
     return ApiResponse.onSuccess(ReviewSuccessCode.MY_REVIEW_LIST_FOUND,
-        reviewService.getMyReviews(userId, lastId, lastRating, sortType, size));
+        reviewService.getMyReviews(userId, pageSize, cursor, query));
   }
 }

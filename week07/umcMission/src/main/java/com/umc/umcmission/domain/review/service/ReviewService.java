@@ -4,9 +4,10 @@ import com.umc.umcmission.domain.review.dto.ReviewReqDTO.CreateReviewReq;
 import com.umc.umcmission.domain.review.dto.ReviewResDTO.CreateReviewRes;
 import com.umc.umcmission.domain.review.dto.ReviewResDTO.GetReviewListRes;
 import com.umc.umcmission.domain.review.dto.ReviewResDTO.GetReviewRes;
-import com.umc.umcmission.domain.review.dto.ReviewResDTO.MyReviewListRes;
 import com.umc.umcmission.domain.review.dto.ReviewResDTO.MyReviewPreview;
+import com.umc.umcmission.domain.review.dto.ReviewResDTO.Pagination;
 import com.umc.umcmission.domain.review.entity.Review;
+import com.umc.umcmission.domain.review.exception.ReviewException;
 import com.umc.umcmission.domain.review.exception.code.ReviewErrorCode;
 import com.umc.umcmission.domain.review.repository.ReviewRepository;
 import com.umc.umcmission.domain.store.entity.Store;
@@ -20,6 +21,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -92,48 +95,81 @@ public class ReviewService {
   }
   // 내가 생성한 리뷰 목록 조회 (커서 기반 페이지네이션)
   @Transactional(readOnly = true)
-  public MyReviewListRes getMyReviews(Long userId, Long lastId, Integer lastRating, String sortType, int size) {
+  public Pagination<MyReviewPreview> getMyReviews(Long userId, Integer pageSize, String cursor, String query) {
     if (!userRepository.existsById(userId)) {
       throw new ProjectException(UserErrorCode.USER_NOT_FOUND);
     }
 
-    // size+1개 조회하여 다음 페이지 존재 여부 확인
-    PageRequest pageRequest = PageRequest.of(0, size + 1);
-    List<Review> reviews;
+    // 1. 페이지 정보로 PageRequest 만들기
+    Pageable pageable = PageRequest.of(0, pageSize);
 
-    if ("RATING".equalsIgnoreCase(sortType)) {
-      reviews = (lastRating == null || lastId == null)
-          ? reviewRepository.findByUserIdOrderByRating(userId, pageRequest)
-          : reviewRepository.findByUserIdWithRatingCursor(userId, lastRating, lastId, pageRequest);
+    Slice<Review> reviewList;
+    String nextCursor;
+
+    // 2. 커서 유무 확인
+    if (!cursor.equals("-1")) {
+      // 2a. 커서 있는 경우 → 커서 분리 & 타입 변환
+      String[] cursorSplit = cursor.split(":");
+      switch (query.toLowerCase()) {
+        case "id":
+          Long prevCursor = Long.valueOf(cursorSplit[0]);
+          Long idCursor = Long.parseLong(cursorSplit[1]);
+          // 가게 내 리뷰들 조회 & where절에 커서값 기입
+          reviewList = reviewRepository.findReviewsByUserIdAndIdLessThanOrderByIdDesc(userId, idCursor, pageable);
+          break;
+        case "rating":
+          Integer lastRating = Integer.valueOf(cursorSplit[0]);
+          Long lastId = Long.parseLong(cursorSplit[1]);
+          reviewList = reviewRepository.findReviewsByUserIdWithRatingCursor(userId, lastRating, lastId, pageable);
+          break;
+        default:
+          throw new ReviewException(ReviewErrorCode.QUERY_NOT_VALID);
+      }
     } else {
-      reviews = (lastId == null)
-          ? reviewRepository.findByUserIdOrderById(userId, pageRequest)
-          : reviewRepository.findByUserIdWithIdCursor(userId, lastId, pageRequest);
+      // 2b. 커서 없이 조회
+      switch (query.toLowerCase()) {
+        case "id":
+          reviewList = reviewRepository.findReviewsByUserIdOrderByIdDesc(userId, pageable);
+          break;
+        case "rating":
+          reviewList = reviewRepository.findReviewsByUserIdOrderByRatingDesc(userId, pageable);
+          break;
+        default:
+          throw new ReviewException(ReviewErrorCode.QUERY_NOT_VALID);
+      }
     }
 
-    boolean hasNext = reviews.size() > size;
-    List<Review> pageItems = hasNext ? reviews.subList(0, size) : reviews;
+    // 3. 다음 커서 계산
+    Review lastReview = reviewList.getContent().isEmpty() ? null : reviewList.getContent().getLast();
+    if (lastReview != null) {
+      // ID:ID 형태 (id 순) 또는 lastRating:lastId 형태 (rating 순)
+      nextCursor = query.equalsIgnoreCase("rating")
+          ? lastReview.getRating() + ":" + lastReview.getId()
+          : lastReview.getId() + ":" + lastReview.getId();
+    } else {
+      nextCursor = null;
+    }
 
-    List<MyReviewPreview> previewList = pageItems.stream()
-        .map(this::toMyReviewPreview)
-        .toList();
-
-    Review lastItem = pageItems.isEmpty() ? null : pageItems.get(pageItems.size() - 1);
-    return MyReviewListRes.builder()
-        .reviewList(previewList)
-        .nextLastId(lastItem != null ? lastItem.getId() : null)
-        .nextLastRating(lastItem != null ? lastItem.getRating() : null)
-        .hasNext(hasNext)
-        .build();
+    // 4. 응답 DTO로 포장하기
+    return toPagination(reviewList, pageSize, nextCursor);
   }
 
-  private MyReviewPreview toMyReviewPreview(Review review) {
-    return MyReviewPreview.builder()
-        .reviewId(review.getId())
-        .storeName(review.getStore().getStoreName())
-        .rating(review.getRating())
-        .content(review.getContent())
-        .createdAt(review.getCreatedAt())
+  private Pagination<MyReviewPreview> toPagination(Slice<Review> reviewSlice, Integer pageSize, String nextCursor) {
+    List<MyReviewPreview> data = reviewSlice.getContent().stream()
+        .map(r -> MyReviewPreview.builder()
+            .reviewId(r.getId())
+            .storeName(r.getStore().getStoreName())
+            .rating(r.getRating())
+            .content(r.getContent())
+            .createdAt(r.getCreatedAt())
+            .build())
+        .toList();
+
+    return Pagination.<MyReviewPreview>builder()
+        .data(data)
+        .pageSize(pageSize)
+        .nextCursor(nextCursor)
+        .hasNext(reviewSlice.hasNext())
         .build();
   }
 
