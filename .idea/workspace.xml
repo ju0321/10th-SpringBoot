@@ -5,18 +5,94 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02d7bb9f-9933-4fbc-bebb-eeb3eea675db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/week08/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/.idea/week06.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/UmcMissionApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/controller/MissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/controller/UserMissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/converter/MissionConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/dto/MissionReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/dto/MissionResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/entity/Mission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/entity/mapping/UserMission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/enums/MissionStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/MissionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/repository/MissionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/repository/UserMissionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/service/MissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/mission/service/UserMissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/controller/ReplyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/controller/ReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/controller/UserReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/converter/ReviewConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReplyReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReplyResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReviewReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReviewResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/entity/Reply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/entity/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/ReviewException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReplyErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReplySuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReviewErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReviewSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/repository/ReviewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/review/service/ReviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/controller/StoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/converter/StoreConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/dto/StoreReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/dto/StoreResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/entity/Region.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/entity/Store.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/enums/StoreCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/exception/StoreException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/exception/code/StoreErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/exception/code/StoreSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/repository/RegionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/repository/StoreRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/store/service/StoreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/converter/UserConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/dto/UserReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/dto/UserResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/entity/Food.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/entity/Term.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/entity/mapping/UserFood.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/entity/mapping/UserTerm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/enums/FoodCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/enums/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/exception/UserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/exception/code/UserErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/exception/code/UserSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/domain/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/code/BaseErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/code/BaseSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/code/GeneralErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/code/GeneralSuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/exception/GeneralExceptionAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/exception/ProjectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/page/PageReqDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/apiPayload/page/PageResDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/main/java/com/umc/umcmission/global/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week08/umcMission/src/test/java/com/umc/umcmission/UmcMissionApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/controller/MissionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/controller/MissionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/dto/MissionResDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/dto/MissionResDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionSuccessCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/exception/code/MissionSuccessCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/repository/MissionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/repository/MissionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/service/MissionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/mission/service/MissionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/controller/UserReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/controller/UserReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReviewResDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/dto/ReviewResDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReviewErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/exception/code/ReviewErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/repository/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/week07/umcMission/src/main/java/com/umc/umcmission/domain/review/service/ReviewService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,28 +123,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ojing/10th-SpringBoot/week07/umcMission",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "Errors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ojing/10th-SpringBoot/week08/umcMission&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ojing\10th-SpringBoot\week08" />
       <recent name="C:\Users\ojing\10th-SpringBoot" />
       <recent name="C:\Users\ojing\10th-SpringBoot\week06" />
       <recent name="C:\Users\ojing\10th-SpringBoot\week05\umcMission\src\main\resources" />
@@ -98,7 +175,9 @@
       <workItem from="1777452586041" duration="12000" />
       <workItem from="1777453008264" duration="68000" />
       <workItem from="1777901087849" duration="1013000" />
-      <workItem from="1778473537813" duration="1640000" />
+      <workItem from="1778473537813" duration="2726000" />
+      <workItem from="1779069479059" duration="667000" />
+      <workItem from="1779071291720" duration="196000" />
     </task>
     <servers />
   </component>
