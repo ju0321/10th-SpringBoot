@@ -1,7 +1,8 @@
-package com.umc.umcmission.global.security;
+package com.umc.umcmission.global.security.service;
 
 import com.umc.umcmission.domain.user.entity.User;
 import com.umc.umcmission.domain.user.repository.UserRepository;
+import com.umc.umcmission.global.security.entity.AuthMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,12 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String email) {
     User user = userRepository.findByEmail(email)
         .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
-    return new CustomUserDetails(user);
+    return new AuthMember(user);
   }
 
-  public CustomUserDetails loadUserById(Long userId) {
-    User user = userRepository.findById(userId)
-        .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
-    return new CustomUserDetails(user);
-  }
 }

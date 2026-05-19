@@ -10,31 +10,32 @@ import com.umc.umcmission.domain.user.enums.Role;
 
 public class UserConverter {
 
-    public static User toUser(UserReqDTO.JoinReq request, String encodedPassword) {
-        return User.builder()
-                .name(request.name())
-                .nickname(request.nickname())
-                .email(request.email())
-                .password(encodedPassword)
-                .address(request.address())
-                .birthDate(request.birthDate())
-                .gender(request.gender())
-                .point(0)
-                .role(Role.USER)
-                .build();
-    }
+  public static User toUser(UserReqDTO.SignupReq request, String encodedPassword) {
+    return User.builder()
+        .name(request.name())
+        .nickname(request.nickname())
+        .email(request.email())
+        .password(encodedPassword)
+        .address(request.address())
+        .phoneNumber(request.phoneNumber())
+        .birthDate(request.birthDate())
+        .gender(request.gender())
+        .point(0)
+        .role(Role.USER)
+        .build();
+  }
 
-    public static UserFood toUserFood(User user, Food food) {
-        return UserFood.builder()
-                .user(user)
-                .food(food)
-                .build();
-    }
+  public static UserFood toUserFood(User user, Food food) {
+    return UserFood.builder()
+        .user(user)
+        .food(food)
+        .build();
+  }
 
-    public static UserTerm toUserTerm(User user, Term term) {
-        return UserTerm.builder()
-                .user(user)
-                .term(term)
-                .build();
-    }
+  public static UserTerm toUserTerm(User user, Term term) {
+    return UserTerm.builder()
+        .user(user)
+        .term(term)
+        .build();
+  }
 }

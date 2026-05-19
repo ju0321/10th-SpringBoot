@@ -1,4 +1,4 @@
-package com.umc.umcmission.global.security;
+package com.umc.umcmission.global.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.umc.umcmission.global.apiPayload.ApiResponse;

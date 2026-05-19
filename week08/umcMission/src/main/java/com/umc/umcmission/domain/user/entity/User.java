@@ -3,6 +3,7 @@ package com.umc.umcmission.domain.user.entity;
 import com.umc.umcmission.domain.mission.entity.mapping.UserMission;
 import com.umc.umcmission.domain.review.entity.Review;
 import com.umc.umcmission.domain.user.entity.mapping.UserFood;
+import com.umc.umcmission.domain.user.entity.mapping.UserTerm;
 import com.umc.umcmission.domain.user.enums.Gender;
 import com.umc.umcmission.domain.user.enums.Role;
 import com.umc.umcmission.global.apiPayload.BaseEntity;
@@ -17,7 +18,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -75,4 +75,13 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserFood> userFoods = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserTerm> userTerms = new ArrayList<>();
+
+    public void updateInfo(String nickname, String address, String phoneNumber) {
+        if (nickname != null) this.nickname = nickname;
+        if (address != null) this.address = address;
+        if (phoneNumber != null) this.phoneNumber = phoneNumber;
+    }
 }

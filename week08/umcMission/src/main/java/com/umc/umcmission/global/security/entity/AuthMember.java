@@ -1,4 +1,4 @@
-package com.umc.umcmission.global.security;
+package com.umc.umcmission.global.security.entity;
 
 import com.umc.umcmission.domain.user.entity.User;
 import java.util.Collection;
@@ -11,9 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @RequiredArgsConstructor
-public class CustomUserDetails implements UserDetails {
+public class AuthMember implements UserDetails {
 
-  // User 엔티티를 Spring Security에서 사용할 수 있도록 함
   private final User user;
 
   // 권한 목록 반환: Spring Security 권한은 "ROLE_USER", "ROLE_ADMIN" 형태
@@ -32,4 +31,6 @@ public class CustomUserDetails implements UserDetails {
   public String getUsername() {
     return user.getEmail();
   }
+
+
 }
